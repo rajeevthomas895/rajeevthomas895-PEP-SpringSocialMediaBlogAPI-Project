@@ -14,6 +14,7 @@ import com.example.repository.MessageRepository;
 public class MessageService {
   @Autowired
   private MessageRepository messageRepository;
+  @Autowired
   private AccountRepository accountRepository;
 
   public Message createMessage(Message message){
