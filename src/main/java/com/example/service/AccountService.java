@@ -19,7 +19,7 @@ public class AccountService {
       return null;
     }
     if(accountRepository.findByUsername(account.getUsername())!=null){
-      return new Account();
+      throw new RuntimeException("duplicate");
     }
     return accountRepository.save(account);
   }
