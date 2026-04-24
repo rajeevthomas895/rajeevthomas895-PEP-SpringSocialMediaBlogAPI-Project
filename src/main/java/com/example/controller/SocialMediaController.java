@@ -32,15 +32,17 @@ public class SocialMediaController {
 
   @PostMapping("/register")
   public ResponseEntity<Account> register(@RequestBody Account account){
-    Account saved =accountService.register(account);
-    if(saved==null){
-      return ResponseEntity.status(400).body(null);
-    }
-    if(saved.getAccountId() == 0){
+    try {
+        Account saved = accountService.register(account);
+        if(saved == null){
+          return ResponseEntity.status(400).body(null);
+        }
+        return ResponseEntity.ok(saved);
+    } 
+    catch (RuntimeException e){
       return ResponseEntity.status(409).body(null);
     }
-    return ResponseEntity.ok(saved);
-  }
+}
   @PostMapping("/login")
   public ResponseEntity<Account> login(@RequestBody Account account){
     Account user=accountService.login(account);
