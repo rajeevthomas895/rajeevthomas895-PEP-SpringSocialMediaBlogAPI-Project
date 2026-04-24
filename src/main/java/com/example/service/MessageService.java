@@ -20,7 +20,7 @@ public class MessageService {
     if(message.getMessageText()==null || message.getMessageText().isBlank() || message.getMessageText().length()>255){
       return null;
     }
-    if(!accountRepository.existsById(message.getPostedBy())){
+    if(message.getPostedBy()==null||!accountRepository.existsById(message.getPostedBy())){
       return null;
     }
     return messageRepository.save(message);
