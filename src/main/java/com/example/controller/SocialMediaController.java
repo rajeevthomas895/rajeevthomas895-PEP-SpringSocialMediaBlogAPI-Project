@@ -36,6 +36,9 @@ public class SocialMediaController {
     if(saved==null){
       return ResponseEntity.status(400).body(null);
     }
+    if(saved.getAccountId() == 0){
+      return ResponseEntity.status(409).body(null);
+    }
     return ResponseEntity.ok(saved);
   }
   @PostMapping("/login")

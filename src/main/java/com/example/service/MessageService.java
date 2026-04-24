@@ -17,10 +17,14 @@ public class MessageService {
   private AccountRepository accountRepository;
 
   public Message createMessage(Message message){
+    if(message == null){
+      return null;
+    }
     if(message.getMessageText()==null || message.getMessageText().isBlank() || message.getMessageText().length()>255){
       return null;
     }
-    if(!accountRepository.existsById(message.getPostedBy())){
+    if(message.getPostedBy() == null 
+    ||!accountRepository.existsById(message.getPostedBy())){
       return null;
     }
     return messageRepository.save(message);

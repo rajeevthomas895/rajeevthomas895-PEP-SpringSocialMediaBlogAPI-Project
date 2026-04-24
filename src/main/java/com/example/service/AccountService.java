@@ -12,14 +12,14 @@ public class AccountService {
   private AccountRepository accountRepository;
 
   public Account register(Account account){
-    if(account.getUsername()==null || account.getUsername().isBlank()){
+    if(account==null || account.getUsername()==null || account.getUsername().isBlank()){
       return null;
     }
     if(account.getPassword()==null || account.getPassword().length()<4){
       return null;
     }
     if(accountRepository.findByUsername(account.getUsername())!=null){
-      return null;
+      return new Account();
     }
     return accountRepository.save(account);
   }
