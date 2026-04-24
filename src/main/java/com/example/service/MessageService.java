@@ -17,10 +17,7 @@ public class MessageService {
   private AccountRepository accountRepository;
 
   public Message createMessage(Message message){
-    if(message.getMessageText()==null || message.getMessageText().isBlank()){
-      return null;
-    }
-    if(message.getMessageText().length()>255){
+    if(message.getMessageText()==null || message.getMessageText().isBlank() || message.getMessageText().length()>255){
       return null;
     }
     if(!accountRepository.existsById(message.getPostedBy())){
